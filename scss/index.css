@@ -2,13 +2,18 @@ nav .navbar-brand img {
   height: 55px;
   width: auto;
 }
-nav > div, nav ul {
+nav .navbar-toggler {
+  outline: none;
+  border: none;
+}
+nav .navbar-collapse,
+nav .navbar-nav {
   gap: 22px;
 }
 
 main section {
-  margin-bottom: 3.5rem;
-  margin-top: 3.5rem;
+  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
 }
 main section h3 {
   margin-bottom: 2.75rem;
@@ -20,10 +25,20 @@ main section h3 {
 }
 main h1 {
   line-height: 4rem;
-  font-size: 3.25rem;
+  font-size: 2.75rem;
+}
+@media (min-width: 992px) {
+  main h1 {
+    font-size: 3.25rem;
+  }
 }
 main .btn {
   border-radius: 10px;
+}
+main .introduction .intro-text,
+main .introduction .intro-illustration {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 main .proposal {
   background-color: #F3F3F3;
@@ -44,6 +59,9 @@ main .contact {
 main .contact .contact-form {
   z-index: 9;
   width: 100%;
+}
+main .contact .contact-form input {
+  border: 1px solid;
 }
 @media (min-width: 992px) {
   main .contact .contact-form {

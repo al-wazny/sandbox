@@ -9,10 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg container d-flex justify-content-between mt-3">
-        <div class="navbar-brand">
-            <img src="assets/illustration//Selection_002.png" alt="logo">
-        </div>
+    <nav class="navbar navbar-expand-lg container d-flex justify-content-between mt-md-3">
+        <a class="navbar-brand" href="/">
+            <img src="assets/illustration//Selection_002.png" alt="brand logo">
+        </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon">
@@ -31,15 +31,15 @@
             <button class="btn btn-outline-secondary">Request a quote</button>
         </div>
     </nav>
-    <main class="container d-flex flex-column mt-5">
-        <section id="introduction" class="d-flex">
-            <div class="w-50">
+    <main class="container d-flex flex-column mt-lg-5">
+        <section id="introduction" class="introduction d-flex flex-column flex-md-row align-items-center">
+            <div class="intro-text text-center text-md-left mb-5 mb-md-0">
                 <h1 class="mb-3">Navigating the digital landscape for success</h1>
                 <p class="my-4">Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation.</p>
-                <button class="btn btn-dark mt-3 p-3">Book a consultation</button>
+                <button class="btn btn-dark mt-3 p-3 mx-auto ml-md-0 d-block">Book a consultation</button>
             </div>
-            <div class="w-50">
-                <img class="w-100 h-auto" src="assets/illustration/Illustration.png" alt="">
+            <div class="intro-illustration">
+                <img class="" src="assets/illustration/Illustration.png" alt="">
             </div>
         </section>
         <section class="proposal d-flex justify-content-between mt-5">
@@ -64,11 +64,11 @@
                         <div class="contact-info">
                             <div class="d-flex flex-column">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name">
+                                <input class="py-1" type="text" name="name" id="name">
                             </div>
                             <div class="d-flex flex-column my-3">
                                 <label for="email">Email*</label>
-                                <input type="email" name="email" id="email" required>
+                                <input class="py-1" type="email" name="email" id="email" required>
                             </div>
                         </div>
                         <div class="contact-message d-flex flex-column">
@@ -76,7 +76,7 @@
                             <textarea name="message" id="message" cols="30" rows="5"></textarea>
                         </div>
                     </div>
-                    <button class="btn btn-dark w-100">Send message</button>
+                    <button class="btn btn-dark w-100 py-2">Send message</button>
                 </div>
                 <div class="contact-illustration">
                     <img class="h-100" src="assets/illustration/Illustration3.png" alt="">
