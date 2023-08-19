@@ -17,11 +17,13 @@ main section {
 }
 main section h3 {
   margin-bottom: 2.75rem;
+  margin-left: 1rem;
   background-color: #B9FF66;
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 10px;
   padding: 0.25rem;
+  border: 1px solid #292A32;
 }
 main h1 {
   line-height: 4rem;
@@ -31,6 +33,9 @@ main h1 {
   main h1 {
     font-size: 3.25rem;
   }
+}
+main .card {
+  border: 1px solid #292A32;
 }
 main .btn {
   border-radius: 10px;
