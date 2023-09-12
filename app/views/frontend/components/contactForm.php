@@ -26,7 +26,7 @@
             <button class="btn btn-dark w-100 py-2">Send message</button>
         </div>
         <div class="contact-illustration">
-            <img class="h-100" src="../assets/illustration/Illustration3.png" alt="">
+            <img class="h-100" src="./assets/illustration/Illustration3.png" alt="">
         </div>
     </div>
 <?php } ?>

@@ -125,7 +125,7 @@
     <div class="container vh-100 d-flex flex-column align-items-center justify-content-center">
         <div class="mb-3">
             <?php if (isset($data['error']['invalidCredentials'])): ?>
-                <?= errorMsg('Incorrect username or password. Please try again.') ?>
+                <?= errorMsg($data['error']['invalidCredentials']) ?>
             <?php endif; ?>
     
             <?php if (isset($data['error']['cookiesError'])): ?>
@@ -134,7 +134,7 @@
         </div>
 
         <div>
-            <form class="form" action="/pages/checkAdminCredentials">
+            <form class="form" action="/pages/admin" method="post">
                 <div class="title">Welcome,<br><span>sign up to continue</span></div>
                 <input type="text" placeholder="Username" name="username" class="input">
                 <input type="password" placeholder="Password" name="password" class="input">
@@ -143,9 +143,7 @@
         </div>
     </div>
 
-    <?= var_dump($_COOKIE) ?>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="../assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>

@@ -3,7 +3,7 @@
         <div class="container bg-dark d-flex flex-column">
             <div class="d-flex flex-column flex-lg-row justify-content-between">
                 <div class="logo">
-                    <img src="../assets/illustration/Selection_002.png" alt="">
+                    <img src="./assets/illustration/Selection_002.png" alt="">
                 </div>
                 <div class="footer-navigation d-flex align-items-center my-3">
                     <ul class="d-flex flex-column flex-lg-row list-unstyled my-4 my-lg-0">

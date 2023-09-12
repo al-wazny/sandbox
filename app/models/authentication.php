@@ -3,12 +3,12 @@
 class authentication {
 
     private $db;
-    private $data;
+    private $user;
 
-    // public function __construct()
-    // {
-    //     $this->db = new Database();
-    // }
+    public function __construct()
+    {
+        $this->db = new Database();
+    }
 
     public function index() {
         return 'hello world';
@@ -16,31 +16,59 @@ class authentication {
 
     public function checkAdminCredentials() 
     {
-        
         if (!$this->cookiesAllowed()) {
             $data['error']['cookiesError'] = 'You need to accept the Cookies to do this';
             
             return $data;
         }
-
-        if ($this->hasValidToken()) {
-            // TODO check if the cookie token is the same as in the DB
-        } else {
-            $data['error']['invalidCredentials'] = true;
-            
-            return $data;
-        }
         
-        //TODO check username and password
+        if (!$this->hasValidToken()) {
+            if (empty($_POST)) {
+                $data['error']['expiredToken'] = true;
+                
+                return $data;
+            }
 
-        $token = $this->generateToken();
-        // Set a cookie that expires in 1 hour (3600 seconds)
-        setcookie('token', $token, time() + 3600, '/', '', true, true);
-        // TODO update or set cookie inside DB
+            if (!$this->checkCredentials()) {
+                $data['error']['invalidCredentials'] = 'Incorrect username or password. Please try again.';
+                
+                return $data; 
+            }
 
-        return header("location: /pages/admin");
+            $token = $this->generateToken();
+            $this->setCookieToken($token);
+            $this->updateDbToken($token);
+        }
     }
 
+    private function checkCredentials() {
+        $this->user = $this->bindAndFetchUser('username', $_POST['username']);
+        if ($this->user) {
+            return isset($_POST['password']) &&  $_POST['password'] === $this->user['password'];
+        }
+    }
+
+    private function hasValidToken() {
+        if (!isset($_COOKIE['token'])) {
+            return false;
+        }
+
+        $this->user = $this->bindAndFetchUser('token', $_COOKIE['token']);
+        if ($this->user) {
+            return $_COOKIE['token'] === $this->user['token'];
+        }
+    }
+
+    //? maybe this would make more sense to put it inside the DB class
+    private function bindAndFetchUser($col, $value) {
+        $this->db->prepare("SELECT * FROM `user_accounts` WHERE `$col`=?");
+        $this->db->bind('s', $value);
+        $this->db->exec();
+        $result = $this->db->getResult();
+
+        return $result->fetch_assoc();
+    }
+    
     private function cookiesAllowed() {
         return (isset($_COOKIE['allowCookies']) && $_COOKIE['allowCookies'] === '1');
     }
@@ -48,14 +76,16 @@ class authentication {
     private function generateToken() {
         return bin2hex(openssl_random_pseudo_bytes(16));
     }
-
-    private function hasValidToken() {
-        return false;
-        // check if cookie is set
-        // check inside the DB if there is an entry that has the same value as the cookie token
+    
+    private function setCookieToken($token) {
+        // Set a cookie that expires in 1 hour (3600 seconds)
+        setcookie('token', $token, time() + 3600, '/', '', true, true);
     }
 
-    private function updateDbToken($userId) {
-        // pass
+    private function updateDbToken($token) {
+        $username = $this->user['username'];
+        $sql = "UPDATE `user_accounts` SET token='$token' WHERE username='$username'";
+
+        $this->db->insert($sql);
     }
 }
