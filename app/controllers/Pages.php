@@ -23,25 +23,12 @@ class Pages extends Controller {
 
     public function admin()
     {
-        if (!$this->authModel->cookiesAllowed()) {
-            $data['cookiesError'] = 'You need to accept the Cookies to use this';
-            // display error message and cookie banner using <script> cookieConsent(); </script>
-        }
+        $data = $this->authModel->checkAdminCredentials();
 
-        if (!$this->authModel->isLoggedIn()) {
+        if (isset($data['error'])) {
             return $this->view('pages/adminLogin', $data);
         }
 
-        $data = [
-            'page' => 'hello world',
-        ];
-
         return $this->view('pages/admin', $data);
-    }
-
-    public function checkAdminCredentials() 
-    {
-        
-        header("location: /pages/admin");
     }
 }
